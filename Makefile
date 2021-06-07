@@ -11,4 +11,8 @@ test:
 	docker container rm html-studio-container-test
 
 run: 
-	docker run -d -p 80:80 --name html-studio-container-test html-studio-test
+	docker run -d -p 80:80 --name html-studio-container-test html-studio-test 
+
+stop:
+	docker container stop html-studio-container-test
+	docker container rm html-studio-container-test
