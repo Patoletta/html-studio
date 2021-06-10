@@ -1,5 +1,6 @@
 # Next Version
 + Setup Heroku
++ Port è variabile d'ambiente
 
 ## 0.1.0
 + Aggiunti sottotitoli in Eneide

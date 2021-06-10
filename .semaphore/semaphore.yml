@@ -13,8 +13,8 @@ blocks:
         - name: 'Create image'
           commands:
             - checkout
-            - docker build --tag html-studio-test --file ./docker/Dockerfile "."
-            - docker run -d --name html-studio-container-test html-studio-test
+            - docker build --tag html-studio-test -e "PORT=8081" -p 8081:8081 --file ./docker/Dockerfile "."
+            - docker run -d -p 8081:8081 --name html-studio-container-test html-studio-test
             - docker exec -it html-studio-container-test nginx -v | grep "nginx/1.20.0"
 
 
