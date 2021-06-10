@@ -1,0 +1,20 @@
+h1#title {
+    color:yellow;
+}
+
+div>div+div {
+    background-color: red;
+}
+div>div {
+    background-color: green;
+}
+
+div.poem-container {
+    background-color: grey;
+}
+
+div.poem-container>div {
+    float: left;
+    width: 48%;
+    padding: 10px;
+}

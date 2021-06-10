@@ -1,0 +1,25 @@
+version: v1.0
+name: Build&Test Pipeline
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+blocks:
+  - name: 'Docker Block'
+    skip:
+      when: "tag =~ '.*'"
+    task:
+      jobs:
+        - name: 'Create image'
+          commands:
+            - checkout
+            - docker build --tag html-studio-test --file ./docker/Dockerfile "."
+            - docker run -d --name html-studio-container-test html-studio-test
+            - docker exec -it html-studio-container-test nginx -v | grep "nginx/1.20.0"
+
+
+promotions:
+  - name: Deploy
+    pipeline_file: site_deploy.yml
+    auto_promote:
+      when: "result = 'passed' and tag =~ '.*'"
