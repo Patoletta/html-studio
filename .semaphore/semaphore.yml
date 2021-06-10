@@ -6,6 +6,8 @@ agent:
     os_image: ubuntu1804
 blocks:
   - name: 'Docker Block'
+    skip:
+      when: "tag =~ '.*'"
     task:
       jobs:
         - name: 'Create image'
@@ -20,4 +22,4 @@ promotions:
   - name: Deploy
     pipeline_file: site_deploy.yml
     auto_promote:
-      when: "result = 'passed'"
+      when: "result = 'passed' and tag =~ '.*'"
