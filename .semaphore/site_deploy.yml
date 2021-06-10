@@ -6,6 +6,7 @@ agent:
     os_image: ubuntu1804
 global_job_config:
   secrets:
+    - name: HEROKU
     - name: NETLIFY
     - name: PEACEFUL-SPENCE
 blocks:
@@ -17,3 +18,7 @@ blocks:
             - checkout
             - npm install netlify-cli -g
             - netlify deploy -s $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN -p --dir ./public
+        - name: 'Deploy to Heroku'
+          commands:
+            - checkout
+            - 
